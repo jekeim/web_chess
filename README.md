@@ -1,3 +1,3 @@
 # web_chess
-chess game playable in the command line built using cpp
-planning to port the game as a web application
+learning to use git and github by building a command line chess game in cpp
+planning to port as a webpage
