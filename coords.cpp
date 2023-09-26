@@ -2,19 +2,14 @@
 
 COORDS::COORDS() //non-existent coords in standard chess
 {
-    file = 'x';
     rank = 9;
+    file = 'x';
 }
 
-void COORDS::setCoords(char f, char r)
+void COORDS::setCoords(char r, char f)
 {
-    file = f;
     rank = r;
-}
-
-char COORDS::getFile()
-{
-    return file;
+    file = f;
 }
 
 char COORDS::getRank()
@@ -22,9 +17,9 @@ char COORDS::getRank()
     return rank;
 }
 
-char COORDS::getRankAsChar()
+char COORDS::getFile()
 {
-    return char(rank + 96);
+    return file;
 }
 
 std::string COORDS::getCoords()
