@@ -6,8 +6,9 @@ BOARD::BOARD()
     setBoard();
 }
 
-void BOARD::setBoard() //TO DO
+void BOARD::setBoard()
 {
+    //sets square's coords and colors; sets all states as empty pieces
     for(int i = 0; i < 8; i++)
     {
         for(int j = 0; j < 8; j++)
@@ -17,8 +18,49 @@ void BOARD::setBoard() //TO DO
             board[i][j].setSquare((i + j) % 2, co, 'e');
         }
     }
-    //test
-    board[2][3].setState('k');
+
+    //set black king
+    board[0][4].setState('K');
+
+    //set white king
+    board[7][4].setState('k');
+
+    //set black queen
+    board[0][3].setState('Q');
+
+    //set white queen
+    board[7][3].setState('q');
+
+    //set black bishops
+    board[0][2].setState('B');
+    board[0][5].setState('B');
+
+    //set white bishops
+    board[7][2].setState('b');
+    board[7][5].setState('b');
+
+    //set black knights
+    board[0][1].setState('N');
+    board[0][6].setState('N');
+
+    //set white knights
+    board[7][2].setState('n');
+    board[7][5].setState('n');
+
+    //set black rooks
+    board[0][0].setState('R');
+    board[0][7].setState('R');
+
+    //set white rooks
+    board[7][0].setState('r');
+    board[7][7] .setState('r');
+
+    //set black and white pawns
+    for(int i = 0; i < 8; i++)
+    {
+        board[1][i].setState('P');
+        board[6][i].setState('p');
+    }
 }
 
 void BOARD::printBoardStates()
@@ -35,8 +77,6 @@ void BOARD::printBoardStates()
 
 SQUARE& BOARD::getSquare(std::string co)
 {
-    std::cout << "pozitie matrice din al doilea char / rank: " << ('8' - co[1]) << std::endl;
-    std::cout << "pozitie matrice din primul char / file: " << (co[0] - 'a') << std::endl;
     return board['8' - co[1]][co[0] - 'a'];
 }
 
@@ -45,16 +85,47 @@ void BOARD::movePiece(std::string from, std::string to)
     char fromState = getSquare(from).getState();
     char toState = getSquare(to).getState();
 
-    std::cout << fromState << toState << std::endl; 
-
     getSquare(to).setState(fromState);
     getSquare(from).setState(toState);
 
     fromState = getSquare(from).getState();
     toState = getSquare(to).getState();
+}
 
-    std::cout << fromState << toState << std::endl; 
+int BOARD::capturePoints(std::string to)
+{
+    switch(getSquare(to).getState())
+    {
+        case('e'):
+        return 0;
 
+        case('q'):
+        case('Q'):
+        return 9;
+
+        case('r'):
+        case('R'):
+        return 5;
+
+        case('b'):
+        case('B'):
+        return 3;
+
+        case('n'):
+        case('N'):
+        return 3;
+
+        case('p'):
+        case('P'):
+        return 1;
+
+        case('k'):
+        case('K'):
+        return 1e6;
+
+        default:
+        return 0;
+    }
 }
 
 //debugging

@@ -22,6 +22,18 @@ class BOARD
         
         void movePiece(std::string from, std::string to); //moves a piece on the chess board
 
+        int capturePoints(std::string to);
+        /*
+        returns points from moving a piece as following:
+        k = should not be able to get captured
+        e = 0 points
+        q = 9 points
+        r = 5 points
+        b = 3 points
+        n = 5 points
+        p = 1 point
+        */
+
         //debugging
         void printBoardCoords();
         void printBoardColors();
