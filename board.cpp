@@ -75,6 +75,26 @@ void BOARD::printBoardStates()
     }   
 }
 
+void BOARD::printBoardStatesWithCoords()
+{
+    //prints files and top separator; "\033[24m" for underlined chars
+    std::cout << "\033[4m" << "  |";
+    for(char c = 'a'; c < 'i'; c++)
+        std::cout << c << ' ';
+    std::cout << "\033[24m" << '\n'; //stop underline and mode to the next row
+
+    //prints ranks, side separator and square states
+    for (int i = 0; i < 8; i++)
+    {
+        std::cout << 8 - i << ' ' << '|';
+        for (int j = 0; j < 8; j++)
+        {
+            std::cout << board[i][j].getState() << ' ';
+        }
+        std::cout << '\n';
+    }
+}
+
 SQUARE& BOARD::getSquare(std::string co)
 {
     return board['8' - co[1]][co[0] - 'a'];

@@ -18,6 +18,8 @@ class BOARD
 
         void printBoardStates(); //prints board's square's states
 
+        void printBoardStatesWithCoords(); //same as above, plus it prints an extra row and column for a square's coords;
+
         SQUARE& getSquare(std::string co); //returns a square of the chess board with std::string coords; useful for moving a piece
         
         void movePiece(std::string from, std::string to); //moves a piece on the chess board
